@@ -438,3 +438,91 @@ const printSummary = (item: Reportable): void => {
 printSummary(oldCivic);
 printSummary(drink);
 ```
+
+### General Plan with Interfaces
+
+General Strategy for Reusable Code in TS
+
+- Create functions that accept arguments that are typed with interfaces
+
+- Objects / classes can decide to 'implement' a given interface to work with a function
+
+## Classes
+
+> Blueprint to create an object with some fields(values) and methods (functions) to represent a 'thing'
+
+### Shorthand for constructor call
+
+```
+class Vehicle {
+  color: string;
+
+  constructor(color: string){
+    this.color = color;
+  }
+  ...
+}
+```
+
+equal to:
+
+```
+class Vehicle {
+
+  constructor(public color: string){}
+  ...
+}
+```
+
+### Example
+
+```
+class Vehicle {
+
+  constructor(public color: string){}
+
+  protected honk(): void {
+    console.log('beep')
+  }
+}
+
+const vehicle = new Vehicle('orange');
+console.log(vehicle.color);
+
+class Car extends Vehicle {
+  constructor(public wheels: number, color: string){
+    super(color);
+  }
+
+  private drive(): void { // override
+    console.log('vroom');
+  }
+
+  startDrivingProcess(): void {
+    this.drive();
+    this.honk();
+  }
+}
+
+const car = new Car(4, 'red');
+car.startDrivingProcess();
+
+```
+
+### Parcel bundler
+
+```
+npm install -g parcel-bundler
+```
+
+Definitely Typed Naming Scheme
+
+```
+@types/{library name}
+```
+
+or
+
+```
+npm install @types/faker
+```
