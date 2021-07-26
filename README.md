@@ -526,3 +526,9 @@ or
 ```
 npm install @types/faker
 ```
+
+## React with Typescript Support
+
+```
+npx create-react-app rts --template typescript
+```
